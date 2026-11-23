@@ -1,0 +1,51 @@
+/* ===== Missão Lua – apresentação visual ===== */
+:root{
+  --fundo:#0b1026; --cartao:#18204a; --texto:#f1f4ff; --suave:#a7b3da;
+  --destaque:#8c82ff; --acerto:#4ade80; --erro:#f87171; --botao:#242e66; --pista:#2a3570;
+}
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;display:flex;justify-content:center;
+  background:radial-gradient(circle at 20% 10%,#1b2566,var(--fundo) 60%);
+  color:var(--texto);font-family:system-ui,"Segoe UI",Roboto,sans-serif}
+main{width:100%;max-width:540px;padding:16px}
+h1{margin:0 0 6px;text-align:center;font-size:1.9rem}
+p{line-height:1.4}
+.suave{color:var(--suave);text-align:center}
+.grande{font-size:4rem;text-align:center}
+.oculto{display:none}
+.cartao{background:var(--cartao);border-radius:20px;padding:18px;margin-bottom:14px;box-shadow:0 6px 24px rgba(0,0,0,.35)}
+
+button,input{font:inherit;border:0;border-radius:14px;color:var(--texto)}
+button{background:var(--botao);padding:14px;font-weight:700;font-size:1.1rem;cursor:pointer;transition:transform .12s}
+button:hover{transform:translateY(-2px)}
+button:active{transform:scale(.97)}
+.destaque{background:var(--destaque);color:#fff}
+.operacoes{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:14px}
+
+/* painel de status */
+.painel{display:flex;justify-content:space-between;gap:8px;font-weight:700}
+.painel span{background:var(--cartao);padding:6px 12px;border-radius:999px}
+
+/* pista: o foguete se move pela propriedade left (definida no JS) */
+.pista{position:relative;height:70px;margin:16px 6px 8px;background:var(--pista);border-radius:40px}
+.terra,.lua{position:absolute;top:50%;transform:translateY(-50%);font-size:2rem}
+.terra{left:-8px}.lua{right:-8px}
+#foguete{position:absolute;top:50%;left:0;font-size:2.2rem;
+  transform:translateY(-50%) rotate(45deg);transition:left .7s cubic-bezier(.3,1.4,.5,1)}
+.barra{height:10px;background:var(--pista);border-radius:9px;overflow:hidden}
+#barra-progresso{height:100%;width:0;background:var(--acerto);transition:width .5s}
+
+/* questão */
+#pergunta{font-size:2.6rem;font-weight:800;text-align:center;margin:8px 0 14px}
+#formulario{display:flex;gap:10px}
+#resposta{flex:1;min-width:0;background:var(--botao);padding:14px;font-size:1.6rem;text-align:center}
+#resposta:focus{outline:3px solid var(--destaque)}
+#feedback{min-height:3.4em;margin-top:12px;text-align:center;font-weight:700}
+#feedback.certo{color:var(--acerto)}
+#feedback.errado{color:var(--erro)}
+
+/* animações de acerto e erro */
+.pulo{animation:pulo .4s}
+@keyframes pulo{50%{transform:scale(1.07)}}
+.tremer{animation:tremer .4s}
+@keyframes tremer{25%{transform:translateX(-8px)}75%{transform:translateX(8px)}}
